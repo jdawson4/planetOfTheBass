@@ -123,7 +123,7 @@ original = [o.lower() for o in original]
 manuallyTranslated = [m.lower() for m in manuallyTranslated]
 
 # make some selections? Here's the full list to choose from:
-possibleLanguages = {
+allLanguages = {
     "afrikaans": "af",
     "albanian": "sq",
     "amharic": "am",
@@ -232,6 +232,67 @@ possibleLanguages = {
     "zulu": "zu",
 }
 
+# realistically it's probably these european ones:
+possibleLanguages = {
+    "albanian": "sq",
+    "armenian": "hy",
+    "azerbaijani": "az",
+    "basque": "eu",
+    "belarusian": "be",
+    "bosnian": "bs",
+    "bulgarian": "bg",
+    "catalan": "ca",
+    "cebuano": "ceb",
+    "chichewa": "ny",
+    "corsican": "co",
+    "croatian": "hr",
+    "czech": "cs",
+    "danish": "da",
+    "dutch": "nl",
+    "esperanto": "eo",
+    "estonian": "et",
+    "finnish": "fi",
+    "french": "fr",
+    "frisian": "fy",
+    "galician": "gl",
+    "georgian": "ka",
+    "german": "de",
+    "greek": "el",
+    "hebrew": "he",
+    "hungarian": "hu",
+    "icelandic": "is",
+    "irish": "ga",
+    "italian": "it",
+    "kazakh": "kk",
+    "kyrgyz": "ky",
+    "latin": "la",
+    "latvian": "lv",
+    "lithuanian": "lt",
+    "luxembourgish": "lb",
+    "macedonian": "mk",
+    "maltese": "mt",
+    "norwegian": "no",
+    "odia": "or",
+    "polish": "pl",
+    "portuguese": "pt",
+    "romanian": "ro",
+    "russian": "ru",
+    "scots gaelic": "gd",
+    "serbian": "sr",
+    "slovak": "sk",
+    "slovenian": "sl",
+    "somali": "so",
+    "spanish": "es",
+    "swedish": "sv",
+    "turkish": "tr",
+    "ukrainian": "uk",
+    "uzbek": "uz",
+    "welsh": "cy",
+    "yiddish": "yi",
+}
+# just the codes:
+possibleLanguages = list(possibleLanguages.values())
+
 
 def compareToOriginal(language, inputTranslation):
     autoTranslated = [
@@ -247,12 +308,13 @@ def compareToOriginal(language, inputTranslation):
                 for word in a.split()
             ]
         )
-        print(retranslatedSentence)
+        #print(retranslatedSentence)
         if retranslatedSentence == original[i]:
             numSame += 1
         i += 1
-    print("numSame:", numSame)
+    #print("numSame:", numSame)
+    return numSame
 
-
-# compareToOriginal('fr', manuallyTranslated)
-print(LANGCODES)
+for langCode in possibleLanguages:
+    num = compareToOriginal(langCode, manuallyTranslated)
+    print(langCode, 'has this many matches with original:', num)
