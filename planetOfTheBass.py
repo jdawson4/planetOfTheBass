@@ -302,16 +302,24 @@ def compareToOriginal(language, inputTranslation):
     numSame = 0
     i = 0
     for a in autoTranslated:
-        retranslatedSentence = " ".join(
+        # translates the phrase word-for-word back into english (costly)
+        """retranslatedSentence = " ".join(
             [
                 translator.translate(word, src=language, dest="en").text.lower()
                 for word in a.split()
             ]
-        )
+        )"""
+        
+        # translates the sentence directly back into english (changing
+        # grammar to match ours)
+        retranslatedSentence = translator.translate(a, src=language, dest="en").text.lower()
+
         #print(retranslatedSentence)
+
         if retranslatedSentence == original[i]:
             numSame += 1
         i += 1
+        
     #print("numSame:", numSame)
     return numSame
 
