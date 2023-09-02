@@ -1,5 +1,6 @@
 # Author: Jacob Dawson
 
+#!pip install googletrans==4.0.0-rc1
 from googletrans import Translator, LANGCODES
 
 translator = Translator()
@@ -243,7 +244,6 @@ possibleLanguages = {
     "bulgarian": "bg",
     "catalan": "ca",
     "cebuano": "ceb",
-    "chichewa": "ny",
     "corsican": "co",
     "croatian": "hr",
     "czech": "cs",
@@ -258,7 +258,6 @@ possibleLanguages = {
     "georgian": "ka",
     "german": "de",
     "greek": "el",
-    "hebrew": "he",
     "hungarian": "hu",
     "icelandic": "is",
     "irish": "ga",
@@ -309,7 +308,7 @@ def compareToOriginal(language, inputTranslation):
                 for word in a.split()
             ]
         )"""
-        
+
         # translates the sentence directly back into english (changing
         # grammar to match ours)
         retranslatedSentence = translator.translate(a, src=language, dest="en").text.lower()
@@ -319,7 +318,7 @@ def compareToOriginal(language, inputTranslation):
         if retranslatedSentence == original[i]:
             numSame += 1
         i += 1
-        
+
     #print("numSame:", numSame)
     return numSame
 
